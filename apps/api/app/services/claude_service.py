@@ -26,22 +26,34 @@ class ClaudeService:
     def _extract_actions(self, response_text: str) -> tuple[str, list[ChatAction]]:
         """Extract JSON actions from response text."""
         actions = []
+        clean_response = response_text
 
-        # Find JSON blocks in the response
-        json_pattern = r'```json\s*(\{[^`]+\})\s*```'
-        matches = re.findall(json_pattern, response_text)
-
+        # Pattern 1: JSON in markdown code blocks
+        json_block_pattern = r'```json\s*(\{[^`]+\})\s*```'
+        matches = re.findall(json_block_pattern, response_text)
         for match in matches:
             try:
                 action_data = json.loads(match)
-                actions.append(ChatAction(**action_data))
+                if "action" in action_data:
+                    actions.append(ChatAction(**action_data))
             except (json.JSONDecodeError, ValueError):
                 continue
+        clean_response = re.sub(json_block_pattern, '', clean_response)
 
-        # Remove JSON blocks from the response text
-        clean_response = re.sub(json_pattern, '', response_text).strip()
+        # Pattern 2: Plain JSON objects on their own line (action objects)
+        # Matches {"action": "...", ...} patterns
+        plain_json_pattern = r'\n?\s*\{"action"\s*:\s*"[^"]+"\s*(?:,\s*"[^"]+"\s*:\s*"[^"]*"\s*)*\}'
+        plain_matches = re.findall(plain_json_pattern, clean_response)
+        for match in plain_matches:
+            try:
+                action_data = json.loads(match.strip())
+                if "action" in action_data:
+                    actions.append(ChatAction(**action_data))
+            except (json.JSONDecodeError, ValueError):
+                continue
+        clean_response = re.sub(plain_json_pattern, '', clean_response)
 
-        return clean_response, actions
+        return clean_response.strip(), actions
 
     async def chat(self, message: str, session_id: str | None = None) -> ChatResponse:
         """Send a message to Claude and get a response."""
