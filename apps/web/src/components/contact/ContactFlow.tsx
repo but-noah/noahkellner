@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // Types
 type Intent = 'job' | 'project' | 'investment' | 'collaboration' | 'hello';

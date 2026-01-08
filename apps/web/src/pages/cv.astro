@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CVDownloadButton from '../components/cv/CVDownloadButton';
 
 const experience = [
   {
@@ -102,25 +103,28 @@ const languages = [
     <div class="container">
       <div class="max-w-4xl mx-auto">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
-          <div>
-            <p class="text-accent text-sm font-sans uppercase tracking-wider mb-2 animate-element" style="--delay: 0">Curriculum Vitae</p>
-            <h1 class="text-4xl md:text-5xl font-display font-bold animate-element" style="--delay: 1">
-              Noah Kellner
-            </h1>
-            <p class="text-xl text-text-secondary mt-2 animate-element" style="--delay: 2">
-              Head of IT • AI Enthusiast • Builder
-            </p>
+          <div class="flex items-center gap-6">
+            <!-- Profile Image -->
+            <div class="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-accent/30 shrink-0 animate-element" style="--delay: 0">
+              <img
+                src="/images/kellnernoah_professional_portrait.jpeg"
+                alt="Noah Kellner"
+                class="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+            <div>
+              <p class="text-accent text-sm font-sans uppercase tracking-wider mb-2 animate-element" style="--delay: 1">Curriculum Vitae</p>
+              <h1 class="text-4xl md:text-5xl font-display font-bold animate-element" style="--delay: 2">
+                Noah Kellner
+              </h1>
+              <p class="text-xl text-text-secondary mt-2 animate-element" style="--delay: 3">
+                Head of IT • AI Enthusiast • Builder
+              </p>
+            </div>
           </div>
 
-          <button
-            class="group px-6 py-3 bg-accent text-bg-primary font-sans font-medium rounded-lg hover:bg-accent-hover transition-all duration-300 hover:scale-105 animate-element flex items-center gap-2 w-fit"
-            style="--delay: 3"
-          >
-            <svg class="w-5 h-5 transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Download PDF
-          </button>
+          <CVDownloadButton client:load />
         </div>
 
         <!-- Quick Info -->
@@ -556,6 +560,8 @@ const languages = [
       const timelineDots = experienceSection.querySelectorAll('.timeline-dot');
 
       function updateTimelineGlow() {
+        if (!experienceSection || !timelineGlow) return;
+
         const sectionRect = experienceSection.getBoundingClientRect();
         const sectionTop = sectionRect.top;
         const sectionHeight = sectionRect.height;
@@ -571,7 +577,7 @@ const languages = [
         timelineGlow.style.opacity = progress > 0 ? '0.8' : '0';
 
         // Activate timeline dots as we scroll past them
-        timelineDots.forEach((dot, index) => {
+        timelineDots.forEach((dot) => {
           const dotRect = (dot as HTMLElement).getBoundingClientRect();
           const dotCenter = dotRect.top + dotRect.height / 2;
 
