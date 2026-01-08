@@ -1,0 +1,78 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, description, heroImage, tags, technologies, status } = project.data;
+---
+
+<a
+  href={`/projects/${project.id}`}
+  class="group block card hover:border-accent/30 transition-all duration-normal"
+>
+  <!-- Image -->
+  <div class="aspect-video bg-bg-tertiary rounded-lg mb-4 overflow-hidden">
+    <div class="w-full h-full flex items-center justify-center text-text-tertiary">
+      <svg class="w-12 h-12 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Status Badge -->
+  <div class="flex items-center gap-2 mb-3">
+    <span class:list={[
+      'text-xs font-sans px-2 py-1 rounded-full',
+      status === 'completed' && 'bg-success/10 text-success',
+      status === 'in-progress' && 'bg-warning/10 text-warning',
+      status === 'concept' && 'bg-accent/10 text-accent',
+    ]}>
+      {status === 'completed' ? 'Completed' : status === 'in-progress' ? 'In Progress' : 'Concept'}
+    </span>
+  </div>
+
+  <!-- Title -->
+  <h3 class="text-xl font-display font-semibold text-text-primary mb-2 group-hover:text-accent transition-colors">
+    {title}
+  </h3>
+
+  <!-- Description -->
+  <p class="text-sm text-text-secondary mb-4 line-clamp-2">
+    {description}
+  </p>
+
+  <!-- Tags -->
+  <div class="flex flex-wrap gap-2 mb-4">
+    {tags.slice(0, 3).map((tag) => (
+      <span class="text-xs font-sans text-text-tertiary bg-bg-tertiary px-2 py-1 rounded">
+        {tag}
+      </span>
+    ))}
+  </div>
+
+  <!-- Technologies -->
+  <div class="flex flex-wrap gap-1">
+    {technologies.slice(0, 4).map((tech) => (
+      <span class="text-xs font-mono text-accent/70">
+        {tech}
+      </span>
+    ))}
+    {technologies.length > 4 && (
+      <span class="text-xs font-mono text-text-tertiary">
+        +{technologies.length - 4}
+      </span>
+    )}
+  </div>
+</a>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

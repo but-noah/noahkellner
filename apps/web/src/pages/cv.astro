@@ -1,0 +1,697 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const experience = [
+  {
+    period: '2024 – Present',
+    title: 'Head of IT',
+    company: 'Dialog Factory GmbH',
+    location: 'Germany',
+    description: 'Leading technical strategy, infrastructure modernization, and AI initiatives. Managing IT team and driving digital transformation.',
+    highlights: [
+      'Led complete cloud migration to AWS',
+      'Implemented AI-powered customer support',
+      'Reduced infrastructure costs by 50%',
+      'Built and scaled IT team',
+    ],
+  },
+  {
+    period: '2022 – 2024',
+    title: 'IT Manager',
+    company: 'Dialog Factory GmbH',
+    location: 'Germany',
+    description: 'Built and scaled the IT department from ground up. Implemented cloud infrastructure and automation pipelines.',
+    highlights: [
+      'Established IT department processes',
+      'Deployed CI/CD pipelines',
+      'Integrated monitoring & alerting',
+    ],
+  },
+  {
+    period: '2020 – 2022',
+    title: 'System Administrator',
+    company: 'Various Companies',
+    location: 'Germany',
+    description: 'Managed server infrastructure, networks, and security systems for multiple clients.',
+    highlights: [
+      'Server administration (Linux/Windows)',
+      'Network infrastructure management',
+      'Security audits & hardening',
+    ],
+  },
+];
+
+const skills = [
+  { category: 'Cloud & Infrastructure', items: [
+    { name: 'AWS', level: 95 },
+    { name: 'Docker', level: 90 },
+    { name: 'Kubernetes', level: 75 },
+    { name: 'Terraform', level: 85 },
+    { name: 'Linux', level: 90 },
+  ]},
+  { category: 'Development', items: [
+    { name: 'Python', level: 90 },
+    { name: 'TypeScript', level: 80 },
+    { name: 'React', level: 75 },
+    { name: 'FastAPI', level: 85 },
+    { name: 'Node.js', level: 70 },
+  ]},
+  { category: 'AI & Automation', items: [
+    { name: 'Claude API', level: 90 },
+    { name: 'LangChain', level: 80 },
+    { name: 'GitHub Actions', level: 95 },
+    { name: 'n8n', level: 85 },
+  ]},
+];
+
+const education = [
+  {
+    period: '2018 – 2020',
+    degree: 'IT Specialist',
+    institution: 'IHK Certification',
+    description: 'System Integration specialization',
+  },
+];
+
+const certifications = [
+  'AWS Solutions Architect',
+  'Docker Certified Associate',
+  'Terraform Associate',
+];
+
+const languages = [
+  { name: 'German', level: 'Native' },
+  { name: 'English', level: 'Fluent' },
+];
+---
+
+<BaseLayout
+  title="CV – Noah Kellner"
+  description="Professional CV of Noah Kellner - Head of IT, with expertise in cloud infrastructure, AI, and automation."
+>
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-track">
+      <div class="scroll-progress-bar" id="scrollProgress"></div>
+      <div class="scroll-progress-glow" id="scrollGlow"></div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="section pt-8">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+          <div>
+            <p class="text-accent text-sm font-sans uppercase tracking-wider mb-2 animate-element" style="--delay: 0">Curriculum Vitae</p>
+            <h1 class="text-4xl md:text-5xl font-display font-bold animate-element" style="--delay: 1">
+              Noah Kellner
+            </h1>
+            <p class="text-xl text-text-secondary mt-2 animate-element" style="--delay: 2">
+              Head of IT • AI Enthusiast • Builder
+            </p>
+          </div>
+
+          <button
+            class="group px-6 py-3 bg-accent text-bg-primary font-sans font-medium rounded-lg hover:bg-accent-hover transition-all duration-300 hover:scale-105 animate-element flex items-center gap-2 w-fit"
+            style="--delay: 3"
+          >
+            <svg class="w-5 h-5 transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Download PDF
+          </button>
+        </div>
+
+        <!-- Quick Info -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="card text-center animate-element" style="--delay: 4">
+            <div class="text-2xl font-display font-bold text-accent" data-counter="5">0</div>
+            <div class="text-xs text-text-tertiary mt-1">Years Experience</div>
+          </div>
+          <div class="card text-center animate-element" style="--delay: 5">
+            <div class="text-2xl font-display font-bold text-accent" data-counter="20">0</div>
+            <div class="text-xs text-text-tertiary mt-1">Projects</div>
+          </div>
+          <div class="card text-center animate-element" style="--delay: 6">
+            <div class="text-2xl font-display font-bold text-accent" data-counter="10">0</div>
+            <div class="text-xs text-text-tertiary mt-1">Technologies</div>
+          </div>
+          <div class="card text-center animate-element" style="--delay: 7">
+            <div class="text-2xl font-display font-bold text-accent">DE</div>
+            <div class="text-xs text-text-tertiary mt-1">Based in Germany</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-display font-bold mb-10 flex items-center gap-4 animate-element">
+          <span class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </span>
+          <span>Experience</span>
+        </h2>
+
+        <div class="relative">
+          <!-- Timeline line with glow -->
+          <div class="timeline-track absolute left-5 top-0 bottom-0 w-0.5 bg-border"></div>
+          <div class="timeline-glow absolute left-5 top-0 w-0.5 bg-accent" id="timelineGlow" style="height: 0; opacity: 0.8; box-shadow: 0 0 20px 3px rgba(232, 220, 196, 0.5);"></div>
+
+          <div class="space-y-10">
+            {experience.map((job, index) => (
+              <div
+                class="experience-item relative pl-14 animate-element"
+                style={`--delay: ${index}`}
+              >
+                <!-- Timeline dot -->
+                <div class="timeline-dot absolute left-0 top-1 w-10 h-10 bg-bg-primary border-2 border-border rounded-full flex items-center justify-center z-10 transition-all duration-500">
+                  <div class="w-3 h-3 bg-accent rounded-full transition-transform duration-300"></div>
+                </div>
+
+                <div class="card hover:border-accent/50 transition-all duration-300 group">
+                  <div class="inline-block px-3 py-1 bg-accent/10 text-accent text-sm font-mono rounded-full mb-3">
+                    {job.period}
+                  </div>
+
+                  <h3 class="text-xl font-display font-semibold group-hover:text-accent transition-colors">
+                    {job.title}
+                  </h3>
+                  <p class="text-text-secondary flex items-center gap-2 mt-1">
+                    <span>{job.company}</span>
+                    <span class="text-text-tertiary">•</span>
+                    <span class="text-text-tertiary">{job.location}</span>
+                  </p>
+
+                  <p class="text-text-secondary mt-3">
+                    {job.description}
+                  </p>
+
+                  <ul class="mt-4 space-y-2">
+                    {job.highlights.map((highlight, hIndex) => (
+                      <li
+                        class="highlight-item flex items-start gap-2 text-sm text-text-tertiary"
+                        style={`--h-delay: ${hIndex}`}
+                      >
+                        <svg class="w-4 h-4 text-accent mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+                        </svg>
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section bg-bg-secondary" id="skills">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-display font-bold mb-10 flex items-center gap-4 animate-element">
+          <span class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </span>
+          <span>Skills & Expertise</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {skills.map((category, catIndex) => (
+            <div class="skill-category animate-element" style={`--delay: ${catIndex}`}>
+              <h3 class="text-sm font-sans font-semibold text-accent uppercase tracking-wider mb-6">
+                {category.category}
+              </h3>
+              <div class="space-y-5">
+                {category.items.map((skill) => (
+                  <div class="skill-item">
+                    <div class="flex justify-between items-center mb-2">
+                      <span class="text-sm text-text-primary font-medium">{skill.name}</span>
+                      <span class="text-xs text-accent font-mono skill-percent" data-target={skill.level}>0%</span>
+                    </div>
+                    <div class="h-2 bg-bg-tertiary rounded-full overflow-hidden">
+                      <div
+                        class="skill-bar h-full bg-linear-to-r from-accent to-accent-hover rounded-full"
+                        data-level={skill.level}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Certifications -->
+  <section class="section" id="education">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <!-- Education -->
+          <div>
+            <h2 class="text-2xl font-display font-bold mb-10 flex items-center gap-4 animate-element">
+              <span class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                </svg>
+              </span>
+              <span>Education</span>
+            </h2>
+
+            <div class="space-y-6">
+              {education.map((edu, index) => (
+                <div
+                  class="card hover:border-accent/30 transition-all duration-300 animate-element"
+                  style={`--delay: ${index}`}
+                >
+                  <div class="text-sm text-accent font-mono mb-2">{edu.period}</div>
+                  <h3 class="text-lg font-display font-semibold">{edu.degree}</h3>
+                  <p class="text-text-secondary">{edu.institution}</p>
+                  <p class="text-text-tertiary text-sm mt-2">{edu.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Certifications & Languages -->
+          <div class="space-y-12">
+            <div>
+              <h2 class="text-2xl font-display font-bold mb-10 flex items-center gap-4 animate-element">
+                <span class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                  </svg>
+                </span>
+                <span>Certifications</span>
+              </h2>
+
+              <div class="space-y-3">
+                {certifications.map((cert, index) => (
+                  <div
+                    class="cert-item flex items-center gap-3 p-4 bg-bg-secondary rounded-lg border border-border hover:border-accent/30 transition-all duration-300 animate-element"
+                    style={`--delay: ${index}`}
+                  >
+                    <div class="w-2 h-2 bg-accent rounded-full shrink-0"></div>
+                    <span class="text-text-primary">{cert}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h2 class="text-2xl font-display font-bold mb-10 flex items-center gap-4 animate-element">
+                <span class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                  </svg>
+                </span>
+                <span>Languages</span>
+              </h2>
+
+              <div class="flex gap-4">
+                {languages.map((lang, index) => (
+                  <div
+                    class="lang-card flex-1 card text-center hover:border-accent/30 transition-all duration-300 animate-element"
+                    style={`--delay: ${index}`}
+                  >
+                    <div class="text-lg font-display font-semibold">{lang.name}</div>
+                    <div class="text-sm text-accent mt-1">{lang.level}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section bg-linear-to-br from-bg-secondary to-bg-tertiary">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl font-display font-bold mb-4 animate-element" style="--delay: 0">Interested in working together?</h2>
+        <p class="text-text-secondary mb-8 animate-element" style="--delay: 1">
+          I'm always open to discussing new opportunities and interesting projects.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 animate-element" style="--delay: 2">
+          <a
+            href="/contact"
+            class="px-6 py-3 bg-accent text-bg-primary font-sans font-medium rounded-lg hover:bg-accent-hover transition-all duration-300 hover:scale-105"
+          >
+            Get in Touch
+          </a>
+          <a
+            href="/projects"
+            class="px-6 py-3 border border-border text-text-primary font-sans font-medium rounded-lg hover:border-accent hover:text-accent transition-all duration-300"
+          >
+            View Projects
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Scroll Progress Indicator */
+  .scroll-progress-container {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: none;
+  }
+
+  @media (min-width: 1280px) {
+    .scroll-progress-container {
+      display: block;
+    }
+  }
+
+  .scroll-progress-track {
+    width: 3px;
+    height: 200px;
+    background: var(--color-border);
+    border-radius: 2px;
+    position: relative;
+    overflow: visible;
+  }
+
+  .scroll-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--color-accent);
+    border-radius: 2px;
+    transition: height 0.1s ease-out;
+  }
+
+  .scroll-progress-glow {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    box-shadow: 0 0 20px 5px rgba(232, 220, 196, 0.6);
+    transition: top 0.1s ease-out;
+  }
+
+  /* Base animation state */
+  .animate-element {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .animate-element.visible {
+    animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 0.1s);
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Timeline glow animation */
+  .timeline-track {
+    background: linear-gradient(to bottom, var(--color-border), var(--color-border));
+  }
+
+  /* Timeline dot animation */
+  .timeline-dot {
+    box-shadow: 0 0 0 0 rgba(232, 220, 196, 0);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .timeline-dot.active {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 8px rgba(232, 220, 196, 0.15), 0 0 30px 5px rgba(232, 220, 196, 0.3);
+  }
+
+  .timeline-dot.active > div {
+    transform: scale(1.3);
+  }
+
+  .experience-item:hover .timeline-dot {
+    box-shadow: 0 0 0 8px rgba(232, 220, 196, 0.15);
+    border-color: var(--color-accent);
+  }
+
+  .experience-item:hover .timeline-dot > div {
+    transform: scale(1.2);
+  }
+
+  /* Highlight items stagger */
+  .highlight-item {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  .experience-item.visible .highlight-item {
+    animation: slideIn 0.5s ease-out forwards;
+    animation-delay: calc(0.5s + var(--h-delay, 0) * 0.1s);
+  }
+
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Skill bar styles */
+  .skill-bar {
+    width: 0%;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+
+  .skill-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(232, 220, 196, 0.6));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .skill-item:hover .skill-bar::after {
+    opacity: 1;
+  }
+
+  /* Certification hover */
+  .cert-item:hover {
+    transform: translateX(8px);
+  }
+
+  /* Language card hover */
+  .lang-card:hover {
+    transform: scale(1.05);
+  }
+
+  /* Pulse animation for active elements */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(232, 220, 196, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 20px 10px rgba(232, 220, 196, 0.2);
+    }
+  }
+</style>
+
+<script>
+  function initCV() {
+    // Scroll Progress Indicator
+    const scrollProgress = document.getElementById('scrollProgress');
+    const scrollGlow = document.getElementById('scrollGlow');
+    const timelineGlow = document.getElementById('timelineGlow');
+
+    function updateScrollProgress() {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = Math.min(scrollTop / docHeight, 1);
+
+      if (scrollProgress && scrollGlow) {
+        const trackHeight = 200;
+        const progressHeight = scrollPercent * trackHeight;
+        scrollProgress.style.height = progressHeight + 'px';
+        scrollGlow.style.top = (progressHeight - 6) + 'px';
+      }
+    }
+
+    // Timeline glow effect
+    const experienceSection = document.getElementById('experience');
+    if (experienceSection && timelineGlow) {
+      const timelineDots = experienceSection.querySelectorAll('.timeline-dot');
+
+      function updateTimelineGlow() {
+        const sectionRect = experienceSection.getBoundingClientRect();
+        const sectionTop = sectionRect.top;
+        const sectionHeight = sectionRect.height;
+        const viewportCenter = window.innerHeight / 2;
+
+        // Calculate how far we've scrolled through the section
+        const scrollIntoSection = viewportCenter - sectionTop;
+        const progress = Math.max(0, Math.min(1, scrollIntoSection / sectionHeight));
+
+        // Update timeline glow height
+        const trackHeight = sectionHeight - 100; // Subtract some padding
+        timelineGlow.style.height = (progress * trackHeight) + 'px';
+        timelineGlow.style.opacity = progress > 0 ? '0.8' : '0';
+
+        // Activate timeline dots as we scroll past them
+        timelineDots.forEach((dot, index) => {
+          const dotRect = (dot as HTMLElement).getBoundingClientRect();
+          const dotCenter = dotRect.top + dotRect.height / 2;
+
+          if (dotCenter < viewportCenter + 100) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateTimelineGlow, { passive: true });
+      updateTimelineGlow();
+    }
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -80px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animate-element elements
+    document.querySelectorAll('.animate-element').forEach((el) => {
+      el.classList.remove('visible');
+      observer.observe(el);
+    });
+
+    // Counter animation function
+    function animateValue(element: HTMLElement, start: number, end: number, duration: number, suffix: string) {
+      const startTime = performance.now();
+
+      function update(currentTime: number) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(start + (end - start) * easeProgress);
+
+        element.textContent = current + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    // Counter observer for stats
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.dataset.counter || '0');
+          if (target > 0) {
+            animateValue(el, 0, target, 1500, '+');
+          }
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-counter]').forEach((el) => {
+      counterObserver.observe(el);
+    });
+
+    // Skill bars animation - Fixed version
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+      const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Get all skill items
+            const skillItems = entry.target.querySelectorAll('.skill-item');
+
+            skillItems.forEach((item, index) => {
+              const bar = item.querySelector('.skill-bar') as HTMLElement;
+              const percent = item.querySelector('.skill-percent') as HTMLElement;
+
+              if (bar && percent) {
+                const level = parseInt(bar.dataset.level || '0');
+                const targetPercent = parseInt(percent.dataset.target || '0');
+
+                setTimeout(() => {
+                  // Animate bar width
+                  bar.style.width = level + '%';
+
+                  // Animate percentage text
+                  animateValue(percent, 0, targetPercent, 1200, '%');
+                }, index * 80);
+              }
+            });
+
+            skillObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      skillObserver.observe(skillsSection);
+    }
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCV);
+  } else {
+    initCV();
+  }
+
+  // Also run on Astro page navigation
+  document.addEventListener('astro:page-load', initCV);
+</script>

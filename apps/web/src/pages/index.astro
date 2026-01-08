@@ -1,5 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import ProjectCard from '../components/projects/ProjectCard.astro';
+
+// Get featured projects
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter(p => p.data.featured)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .slice(0, 3);
+
+// Career highlights for CV preview
+const careerHighlights = [
+  { year: '2024', role: 'Head of IT', company: 'Dialog Factory' },
+  { year: '2022', role: 'IT Manager', company: 'Dialog Factory' },
+  { year: '2020', role: 'System Admin', company: 'Various' },
+];
 ---
 
 <BaseLayout>
@@ -80,31 +96,226 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <!-- About Preview Section -->
   <section class="section">
     <div class="container">
-      <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-display font-bold mb-6">
-          Building the Future, One Line at a Time
-        </h2>
-        <p class="text-lg text-text-secondary leading-relaxed mb-8">
-          As Head of IT at Dialog Factory GmbH, I lead technical strategy and innovation.
-          My passion lies in AI, infrastructure automation, and creating scalable solutions
-          that drive business value.
-        </p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Image -->
+        <div class="aspect-square bg-bg-secondary rounded-2xl border border-border flex items-center justify-center order-2 lg:order-1">
+          <div class="text-center text-text-tertiary">
+            <svg class="w-20 h-20 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <p class="text-sm">Profile Photo</p>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="order-1 lg:order-2">
+          <p class="text-accent text-sm font-sans uppercase tracking-wider mb-4">About Me</p>
+          <h2 class="text-3xl md:text-4xl font-display font-bold mb-6">
+            Building the future,<br />one system at a time.
+          </h2>
+          <p class="text-lg text-text-secondary leading-relaxed mb-6">
+            I'm the Head of IT at Dialog Factory GmbH, where I lead technical strategy
+            and drive innovation. My passion lies at the intersection of infrastructure,
+            automation, and artificial intelligence.
+          </p>
+          <p class="text-text-secondary leading-relaxed mb-8">
+            I believe that technology should empower people, not complicate their lives.
+            That's why I focus on building systems that are robust, scalable, and—most
+            importantly—useful.
+          </p>
+
+          <!-- Quick Skills -->
+          <div class="flex flex-wrap gap-2 mb-8">
+            {['AWS', 'Python', 'AI/ML', 'Docker', 'React', 'TypeScript'].map((skill) => (
+              <span class="px-3 py-1 bg-bg-secondary border border-border rounded-lg text-sm font-mono text-accent">
+                {skill}
+              </span>
+            ))}
+          </div>
+
+          <a
+            href="/about"
+            class="text-accent hover:text-accent-hover font-sans font-medium inline-flex items-center gap-2 transition-colors"
+          >
+            Read my full story
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV Preview Section - Eye Catcher -->
+  <section class="cv-preview-section section overflow-hidden">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Left: Text & CTA -->
+        <div class="cv-text-content">
+          <p class="text-accent text-sm font-sans uppercase tracking-wider mb-4 cv-animate" style="--delay: 0">
+            Curriculum Vitae
+          </p>
+          <h2 class="text-3xl md:text-4xl font-display font-bold mb-6 cv-animate" style="--delay: 1">
+            My Professional<br />
+            <span class="text-accent">Journey</span>
+          </h2>
+          <p class="text-lg text-text-secondary leading-relaxed mb-8 cv-animate" style="--delay: 2">
+            From system administration to leading IT strategy — explore my career path,
+            skills, and the milestones that shaped my expertise in technology and innovation.
+          </p>
+
+          <!-- Mini Timeline -->
+          <div class="space-y-4 mb-8">
+            {careerHighlights.map((item, index) => (
+              <div
+                class="cv-timeline-item flex items-center gap-4 cv-animate"
+                style={`--delay: ${3 + index}`}
+              >
+                <div class="cv-timeline-dot w-3 h-3 rounded-full bg-accent shrink-0"></div>
+                <div class="cv-timeline-line h-px flex-1 bg-border max-w-8"></div>
+                <span class="text-accent font-mono text-sm">{item.year}</span>
+                <span class="text-text-primary font-medium">{item.role}</span>
+                <span class="text-text-tertiary text-sm hidden sm:inline">@ {item.company}</span>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="/cv"
+            class="cv-cta-button group inline-flex items-center gap-3 px-8 py-4 bg-accent text-bg-primary font-sans font-semibold rounded-xl transition-all duration-300 hover:scale-105 cv-animate"
+            style="--delay: 6"
+          >
+            <span>View Full CV</span>
+            <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Right: Floating CV Card -->
+        <div class="cv-card-container relative cv-animate" style="--delay: 2">
+          <!-- Glow Effect Background -->
+          <div class="cv-glow absolute inset-0 blur-3xl opacity-30"></div>
+
+          <!-- Main Card -->
+          <div class="cv-card relative bg-bg-secondary/80 backdrop-blur-sm border border-border rounded-2xl p-8 transition-all duration-500">
+            <!-- Card Header -->
+            <div class="flex items-start justify-between mb-6">
+              <div>
+                <div class="text-xs text-accent font-mono uppercase tracking-wider mb-1">Resume</div>
+                <h3 class="text-2xl font-display font-bold">Noah Kellner</h3>
+                <p class="text-text-secondary text-sm">Head of IT</p>
+              </div>
+              <div class="cv-card-badge w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <div class="cv-stat text-center p-3 bg-bg-tertiary/50 rounded-lg">
+                <div class="cv-stat-number text-2xl font-display font-bold text-accent" data-target="5">0</div>
+                <div class="text-xs text-text-tertiary">Years</div>
+              </div>
+              <div class="cv-stat text-center p-3 bg-bg-tertiary/50 rounded-lg">
+                <div class="cv-stat-number text-2xl font-display font-bold text-accent" data-target="20">0</div>
+                <div class="text-xs text-text-tertiary">Projects</div>
+              </div>
+              <div class="cv-stat text-center p-3 bg-bg-tertiary/50 rounded-lg">
+                <div class="cv-stat-number text-2xl font-display font-bold text-accent" data-target="3">0</div>
+                <div class="text-xs text-text-tertiary">Certs</div>
+              </div>
+            </div>
+
+            <!-- Skill Bars Preview -->
+            <div class="space-y-3 mb-6">
+              <div class="cv-skill-preview">
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-text-secondary">Cloud & AWS</span>
+                  <span class="text-accent font-mono">95%</span>
+                </div>
+                <div class="h-1.5 bg-bg-tertiary rounded-full overflow-hidden">
+                  <div class="cv-skill-bar h-full bg-accent rounded-full" style="--target-width: 95%"></div>
+                </div>
+              </div>
+              <div class="cv-skill-preview">
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-text-secondary">Python & AI</span>
+                  <span class="text-accent font-mono">90%</span>
+                </div>
+                <div class="h-1.5 bg-bg-tertiary rounded-full overflow-hidden">
+                  <div class="cv-skill-bar h-full bg-accent rounded-full" style="--target-width: 90%"></div>
+                </div>
+              </div>
+              <div class="cv-skill-preview">
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-text-secondary">Infrastructure</span>
+                  <span class="text-accent font-mono">90%</span>
+                </div>
+                <div class="h-1.5 bg-bg-tertiary rounded-full overflow-hidden">
+                  <div class="cv-skill-bar h-full bg-accent rounded-full" style="--target-width: 90%"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Footer -->
+            <div class="flex items-center justify-between pt-4 border-t border-border">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span class="text-xs text-text-tertiary">Available for opportunities</span>
+              </div>
+              <div class="flex gap-1">
+                {['AWS', 'Python', 'Docker'].map((tag) => (
+                  <span class="px-2 py-0.5 bg-accent/10 text-accent text-xs rounded">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Elements -->
+          <div class="cv-floating-element cv-float-1 absolute -top-4 -right-4 w-20 h-20 bg-accent/5 rounded-2xl border border-accent/20"></div>
+          <div class="cv-floating-element cv-float-2 absolute -bottom-6 -left-6 w-16 h-16 bg-accent/5 rounded-full border border-accent/20"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section class="section bg-bg-secondary">
+    <div class="container">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+        <div>
+          <p class="text-accent text-sm font-sans uppercase tracking-wider mb-2">Featured Work</p>
+          <h2 class="text-3xl md:text-4xl font-display font-bold">
+            Selected Projects
+          </h2>
+        </div>
         <a
-          href="/about"
-          class="text-accent hover:text-accent-hover font-sans font-medium inline-flex items-center gap-2 transition-colors"
+          href="/projects"
+          class="text-accent hover:text-accent-hover font-sans font-medium inline-flex items-center gap-2 transition-colors mt-4 md:mt-0"
         >
-          Learn more about me
+          View all projects
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </a>
       </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {featuredProjects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="section bg-gradient-to-br from-bg-secondary to-bg-tertiary">
+  <section class="section bg-linear-to-br from-bg-secondary to-bg-tertiary">
     <div class="container">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-3xl md:text-4xl font-display font-bold mb-6">
@@ -167,4 +378,248 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     opacity: 0;
     animation: fade-in 0.6s ease-out 0.8s forwards;
   }
+
+  /* CV Preview Section Styles */
+  .cv-preview-section {
+    position: relative;
+    background: linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 50%, var(--color-bg-primary) 100%);
+  }
+
+  .cv-preview-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(232, 220, 196, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* CV Animate Elements */
+  .cv-animate {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .cv-animate.visible {
+    animation: cv-slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--delay, 0) * 0.1s);
+  }
+
+  @keyframes cv-slide-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* CV Timeline Items */
+  .cv-timeline-item {
+    position: relative;
+  }
+
+  .cv-timeline-dot {
+    box-shadow: 0 0 0 0 rgba(232, 220, 196, 0);
+    transition: all 0.3s ease;
+  }
+
+  .cv-timeline-item:hover .cv-timeline-dot {
+    box-shadow: 0 0 0 6px rgba(232, 220, 196, 0.2);
+    transform: scale(1.3);
+  }
+
+  /* CV Card Effects */
+  .cv-card-container {
+    perspective: 1000px;
+  }
+
+  .cv-glow {
+    background: radial-gradient(circle at 50% 50%, var(--color-accent) 0%, transparent 70%);
+    animation: cv-glow-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes cv-glow-pulse {
+    0%, 100% {
+      opacity: 0.2;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.35;
+      transform: scale(1.05);
+    }
+  }
+
+  .cv-card {
+    transform-style: preserve-3d;
+    transform: rotateY(-5deg) rotateX(5deg);
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(232, 220, 196, 0.1);
+  }
+
+  .cv-card:hover {
+    transform: rotateY(0deg) rotateX(0deg) translateY(-10px);
+    box-shadow:
+      0 35px 60px -15px rgba(0, 0, 0, 0.6),
+      0 0 40px rgba(232, 220, 196, 0.15);
+  }
+
+  /* CV Skill Bars */
+  .cv-skill-bar {
+    width: 0%;
+    transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cv-skill-bar.animated {
+    width: var(--target-width, 0%);
+  }
+
+  /* Floating Elements */
+  .cv-floating-element {
+    transition: all 0.5s ease;
+  }
+
+  .cv-float-1 {
+    animation: cv-float-1 6s ease-in-out infinite;
+  }
+
+  .cv-float-2 {
+    animation: cv-float-2 8s ease-in-out infinite;
+  }
+
+  @keyframes cv-float-1 {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(5deg);
+    }
+  }
+
+  @keyframes cv-float-2 {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(-5deg);
+    }
+  }
+
+  .cv-card:hover ~ .cv-float-1 {
+    transform: translateY(-20px) rotate(10deg);
+  }
+
+  .cv-card:hover ~ .cv-float-2 {
+    transform: translateY(-15px) rotate(-10deg);
+  }
+
+  /* CTA Button Glow */
+  .cv-cta-button {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cv-cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .cv-cta-button:hover::before {
+    left: 100%;
+  }
+
+  /* Card Badge Pulse */
+  .cv-card-badge {
+    animation: badge-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes badge-pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(232, 220, 196, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 20px 5px rgba(232, 220, 196, 0.2);
+    }
+  }
 </style>
+
+<script>
+  function initCVPreview() {
+    const cvSection = document.querySelector('.cv-preview-section');
+    if (!cvSection) return;
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Animate all cv-animate elements
+          const animateElements = cvSection.querySelectorAll('.cv-animate');
+          animateElements.forEach((el) => {
+            el.classList.add('visible');
+          });
+
+          // Animate skill bars
+          setTimeout(() => {
+            const skillBars = cvSection.querySelectorAll('.cv-skill-bar');
+            skillBars.forEach((bar) => {
+              bar.classList.add('animated');
+            });
+          }, 600);
+
+          // Animate stat numbers
+          const statNumbers = cvSection.querySelectorAll('.cv-stat-number');
+          statNumbers.forEach((el, index) => {
+            const htmlEl = el as HTMLElement;
+            const target = parseInt(htmlEl.dataset.target || '0');
+            setTimeout(() => {
+              animateNumber(htmlEl, target);
+            }, 800 + index * 200);
+          });
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(cvSection);
+
+    function animateNumber(element: HTMLElement, target: number) {
+      const duration = 1500;
+      const start = performance.now();
+
+      function update(currentTime: number) {
+        const elapsed = currentTime - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(target * easeProgress);
+
+        element.textContent = current.toString();
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          element.textContent = target + '+';
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCVPreview);
+  } else {
+    initCVPreview();
+  }
+
+  // Also run on Astro page navigation
+  document.addEventListener('astro:page-load', initCVPreview);
+</script>

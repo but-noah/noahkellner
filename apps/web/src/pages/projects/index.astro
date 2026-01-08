@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/projects/ProjectCard.astro';
+
+const projects = await getCollection('projects');
+
+const sortedProjects = projects.sort((a, b) => {
+  // Featured projects first
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  // Then by date
+  return b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf();
+});
+---
+
+<BaseLayout
+  title="Projects – Noah Kellner"
+  description="Explore my projects in IT infrastructure, AI development, and web applications."
+>
+  <section class="section">
+    <div class="container">
+      <!-- Header -->
+      <div class="max-w-3xl mb-12">
+        <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">
+          Projects
+        </h1>
+        <p class="text-lg text-text-secondary">
+          A collection of projects I've built, from enterprise infrastructure to AI-powered applications.
+          Each project represents a unique challenge and learning experience.
+        </p>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sortedProjects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+
+      <!-- Empty State -->
+      {sortedProjects.length === 0 && (
+        <div class="text-center py-20">
+          <p class="text-text-tertiary">No projects yet. Check back soon!</p>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
