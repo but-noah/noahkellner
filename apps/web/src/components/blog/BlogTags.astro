@@ -1,0 +1,48 @@
+---
+interface Props {
+  tags: string[];
+  limit?: number;
+  size?: 'sm' | 'md';
+  clickable?: boolean;
+}
+
+const { tags, limit, size = 'sm', clickable = false } = Astro.props;
+
+const displayTags = limit ? tags.slice(0, limit) : tags;
+const remainingCount = limit ? tags.length - limit : 0;
+
+const sizeClasses = {
+  sm: 'text-xs px-2 py-1',
+  md: 'text-sm px-3 py-1.5',
+};
+---
+
+<div class="flex flex-wrap gap-2">
+  {displayTags.map((tag) => (
+    clickable ? (
+      <a
+        href={`/blog?tag=${encodeURIComponent(tag)}`}
+        class:list={[
+          'font-sans text-accent/80 bg-accent/10 rounded transition-colors hover:bg-accent/20 hover:text-accent',
+          sizeClasses[size],
+        ]}
+      >
+        {tag}
+      </a>
+    ) : (
+      <span
+        class:list={[
+          'font-sans text-accent/80 bg-accent/10 rounded',
+          sizeClasses[size],
+        ]}
+      >
+        {tag}
+      </span>
+    )
+  ))}
+  {remainingCount > 0 && (
+    <span class:list={['font-sans text-text-tertiary', sizeClasses[size]]}>
+      +{remainingCount}
+    </span>
+  )}
+</div>

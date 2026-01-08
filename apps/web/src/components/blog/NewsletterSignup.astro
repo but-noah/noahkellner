@@ -1,0 +1,373 @@
+---
+// Newsletter Signup Component - Conversion Optimized
+// Mock implementation - ready for backend integration
+---
+
+<section class="newsletter-section section relative overflow-hidden">
+  <!-- Background Elements -->
+  <div class="absolute inset-0 bg-gradient-to-br from-bg-secondary via-bg-primary to-bg-secondary"></div>
+  <div class="newsletter-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl"></div>
+
+  <div class="container relative z-10">
+    <div class="max-w-2xl mx-auto">
+      <!-- Main Card -->
+      <div class="newsletter-card bg-bg-secondary/80 backdrop-blur-sm border border-border rounded-2xl p-8 md:p-10 shadow-2xl">
+
+        <!-- Social Proof Badge -->
+        <div class="flex justify-center mb-6">
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-full">
+            <div class="flex -space-x-2">
+              <div class="w-6 h-6 rounded-full bg-accent/30 border-2 border-bg-secondary flex items-center justify-center text-[10px] font-bold text-accent">N</div>
+              <div class="w-6 h-6 rounded-full bg-accent/40 border-2 border-bg-secondary flex items-center justify-center text-[10px] font-bold text-accent">K</div>
+              <div class="w-6 h-6 rounded-full bg-accent/50 border-2 border-bg-secondary flex items-center justify-center text-[10px] font-bold text-accent">+</div>
+            </div>
+            <span class="text-sm text-text-secondary">
+              Join <span class="subscriber-count font-semibold text-accent" data-target="847">0</span>+ readers
+            </span>
+          </div>
+        </div>
+
+        <!-- Headline -->
+        <div class="text-center mb-6">
+          <h2 class="text-2xl md:text-3xl font-display font-bold mb-3">
+            Level Up Your Tech Game
+          </h2>
+          <p class="text-text-secondary text-lg">
+            Get actionable insights on AI, cloud infrastructure, and tech leadership.
+            <span class="text-accent">Delivered weekly.</span>
+          </p>
+        </div>
+
+        <!-- Benefits -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          <div class="benefit-item flex items-center gap-3 p-3 rounded-lg bg-bg-tertiary/50">
+            <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <span class="text-sm text-text-secondary">AI & Automation tips</span>
+          </div>
+          <div class="benefit-item flex items-center gap-3 p-3 rounded-lg bg-bg-tertiary/50">
+            <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+              </svg>
+            </div>
+            <span class="text-sm text-text-secondary">Cloud best practices</span>
+          </div>
+          <div class="benefit-item flex items-center gap-3 p-3 rounded-lg bg-bg-tertiary/50">
+            <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <span class="text-sm text-text-secondary">Career insights</span>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <form id="newsletter-form" class="newsletter-form">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <div class="relative flex-1">
+              <input
+                type="email"
+                id="newsletter-email"
+                name="email"
+                placeholder="your@email.com"
+                required
+                class="w-full px-4 py-3.5 bg-bg-primary border border-border rounded-xl text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+              />
+              <div class="input-focus-glow absolute inset-0 rounded-xl pointer-events-none opacity-0 transition-opacity"></div>
+            </div>
+            <button
+              type="submit"
+              class="newsletter-submit group px-6 py-3.5 bg-accent text-bg-primary font-sans font-semibold rounded-xl hover:bg-accent-hover transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 whitespace-nowrap"
+            >
+              <span class="btn-text">Subscribe Free</span>
+              <svg class="btn-arrow w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+              <svg class="btn-spinner hidden w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Error Message -->
+          <div id="form-error" class="hidden mt-3 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm text-center">
+          </div>
+        </form>
+
+        <!-- Success State -->
+        <div id="newsletter-success" class="hidden text-center">
+          <div class="success-animation mb-4">
+            <div class="w-16 h-16 mx-auto bg-accent/20 rounded-full flex items-center justify-center">
+              <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-xl font-display font-bold mb-2 text-accent">You're In!</h3>
+          <p class="text-text-secondary">
+            Check your inbox to confirm your subscription.
+            <br />
+            <span class="text-sm text-text-tertiary">First issue arrives this week.</span>
+          </p>
+        </div>
+
+        <!-- Privacy Note -->
+        <p class="text-center text-xs text-text-tertiary mt-4 privacy-note">
+          <svg class="inline w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          No spam, ever. Unsubscribe with one click.
+        </p>
+      </div>
+
+      <!-- Trust Indicators -->
+      <div class="mt-6 flex flex-wrap justify-center items-center gap-6 text-text-tertiary text-sm">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>Weekly insights</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>5-min reads</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>100% free</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .newsletter-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .newsletter-glow {
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.3;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+  }
+
+  .newsletter-card {
+    animation: float-in 0.6s ease-out;
+  }
+
+  @keyframes float-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .benefit-item {
+    animation: fade-in-stagger 0.5s ease-out backwards;
+  }
+
+  .benefit-item:nth-child(1) { animation-delay: 0.1s; }
+  .benefit-item:nth-child(2) { animation-delay: 0.2s; }
+  .benefit-item:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes fade-in-stagger {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .input-focus-glow {
+    background: radial-gradient(circle at center, var(--color-accent) 0%, transparent 70%);
+  }
+
+  #newsletter-email:focus + .input-focus-glow {
+    opacity: 0.1;
+  }
+
+  .success-animation {
+    animation: success-pop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  @keyframes success-pop {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .newsletter-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+</style>
+
+<script>
+  function initNewsletter() {
+    const form = document.getElementById('newsletter-form') as HTMLFormElement;
+    const emailInput = document.getElementById('newsletter-email') as HTMLInputElement;
+    const submitBtn = form?.querySelector('.newsletter-submit') as HTMLButtonElement;
+    const btnText = submitBtn?.querySelector('.btn-text');
+    const btnArrow = submitBtn?.querySelector('.btn-arrow');
+    const btnSpinner = submitBtn?.querySelector('.btn-spinner');
+    const errorDiv = document.getElementById('form-error');
+    const successDiv = document.getElementById('newsletter-success');
+    const privacyNote = form?.parentElement?.querySelector('.privacy-note');
+
+    // Animate subscriber count
+    const subscriberCount = document.querySelector('.subscriber-count') as HTMLElement;
+    if (subscriberCount) {
+      const target = parseInt(subscriberCount.dataset.target || '0');
+      animateCount(subscriberCount, target);
+    }
+
+    function animateCount(element: HTMLElement, target: number) {
+      const duration = 2000;
+      const start = performance.now();
+
+      function update(currentTime: number) {
+        const elapsed = currentTime - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(target * easeProgress);
+
+        element.textContent = current.toString();
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+
+      // Start animation when element is visible
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            requestAnimationFrame(update);
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(element);
+    }
+
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = emailInput?.value.trim();
+
+      // Basic validation
+      if (!email || !isValidEmail(email)) {
+        showError('Please enter a valid email address.');
+        return;
+      }
+
+      // Show loading state
+      setLoading(true);
+
+      // Simulate API call (mock)
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Mock success (in production, this would call an actual API)
+      // For now, just show success state
+      showSuccess();
+    });
+
+    function isValidEmail(email: string): boolean {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function setLoading(loading: boolean) {
+      if (submitBtn) submitBtn.disabled = loading;
+      if (btnText) btnText.classList.toggle('hidden', loading);
+      if (btnArrow) btnArrow.classList.toggle('hidden', loading);
+      if (btnSpinner) btnSpinner.classList.toggle('hidden', !loading);
+    }
+
+    function showError(message: string) {
+      if (errorDiv) {
+        errorDiv.textContent = message;
+        errorDiv.classList.remove('hidden');
+      }
+      emailInput?.focus();
+    }
+
+    function showSuccess() {
+      setLoading(false);
+      form.classList.add('hidden');
+      if (privacyNote) privacyNote.classList.add('hidden');
+      if (errorDiv) errorDiv.classList.add('hidden');
+      if (successDiv) successDiv.classList.remove('hidden');
+
+      // Store in localStorage to remember subscription
+      localStorage.setItem('newsletter_subscribed', 'true');
+    }
+
+    // Check if already subscribed
+    if (localStorage.getItem('newsletter_subscribed') === 'true') {
+      form.classList.add('hidden');
+      if (privacyNote) privacyNote.classList.add('hidden');
+      if (successDiv) {
+        successDiv.classList.remove('hidden');
+        const successTitle = successDiv.querySelector('h3');
+        const successText = successDiv.querySelector('p');
+        if (successTitle) successTitle.textContent = "You're Already Subscribed!";
+        if (successText) successText.innerHTML = "Thanks for being a subscriber.<br/><span class='text-sm text-text-tertiary'>New issue coming soon.</span>";
+      }
+    }
+
+    // Clear error on input
+    emailInput?.addEventListener('input', () => {
+      if (errorDiv) errorDiv.classList.add('hidden');
+    });
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNewsletter);
+  } else {
+    initNewsletter();
+  }
+
+  // Run on Astro page navigation
+  document.addEventListener('astro:page-load', initNewsletter);
+</script>

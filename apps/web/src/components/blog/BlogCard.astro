@@ -1,0 +1,91 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  readingTime?: number;
+}
+
+const { post, readingTime = 5 } = Astro.props;
+const { title, description, publishedAt, tags, coverImage } = post.data;
+
+// Format date
+const formattedDate = publishedAt.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<a
+  href={`/blog/${post.id}`}
+  class="group block card hover:border-accent/30 transition-all duration-normal"
+>
+  <!-- Cover Image -->
+  <div class="aspect-video bg-bg-tertiary rounded-lg mb-4 overflow-hidden">
+    {coverImage ? (
+      <img
+        src={coverImage}
+        alt={title}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center text-text-tertiary">
+        <svg class="w-12 h-12 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+        </svg>
+      </div>
+    )}
+  </div>
+
+  <!-- Meta Info -->
+  <div class="flex items-center gap-3 text-xs text-text-tertiary mb-3">
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+      {formattedDate}
+    </span>
+    <span class="text-border">|</span>
+    <span class="flex items-center gap-1">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      {readingTime} min read
+    </span>
+  </div>
+
+  <!-- Title -->
+  <h3 class="text-xl font-display font-semibold text-text-primary mb-2 group-hover:text-accent transition-colors">
+    {title}
+  </h3>
+
+  <!-- Description -->
+  <p class="text-sm text-text-secondary mb-4 line-clamp-2">
+    {description}
+  </p>
+
+  <!-- Tags -->
+  <div class="flex flex-wrap gap-2">
+    {tags.slice(0, 3).map((tag) => (
+      <span class="text-xs font-sans text-accent/80 bg-accent/10 px-2 py-1 rounded">
+        {tag}
+      </span>
+    ))}
+    {tags.length > 3 && (
+      <span class="text-xs font-sans text-text-tertiary">
+        +{tags.length - 3}
+      </span>
+    )}
+  </div>
+</a>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
