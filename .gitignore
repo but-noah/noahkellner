@@ -39,3 +39,6 @@ coverage/
 .temp/
 .vercel/
 .railway/
+
+apps/api/venv
+__pycache__/
