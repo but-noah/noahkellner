@@ -12,6 +12,7 @@ Modern personal website built with Astro, React, and Tailwind CSS. Features a bi
 - **Projects Page** - Project cards with tags, technologies, status badges
 - **Project Detail Pages** - Full project descriptions with metadata
 - **Contact Page** - Multi-step ContactFlow component with intent selection
+- **Blog** - Blog index with tag filtering, detail pages with reading time, related posts, share buttons, newsletter signup (conversion-optimized)
 - **Design System** - Dark theme with warm sand/beige accent (#E8DCC4), Satoshi + Inter fonts
 
 ### Tech Stack
@@ -30,11 +31,12 @@ noahkellner/
 │   ├── web/                    # Astro frontend
 │   │   ├── src/
 │   │   │   ├── components/     # UI components
+│   │   │   │   ├── blog/       # Blog cards, tags, newsletter signup
 │   │   │   │   ├── contact/    # ContactFlow React island
 │   │   │   │   ├── cv/         # CV components + PDF export
 │   │   │   │   └── projects/   # Project cards
 │   │   │   ├── content/        # Content collections
-│   │   │   │   ├── blog/       # Blog posts (planned)
+│   │   │   │   ├── blog/       # Blog posts (markdown)
 │   │   │   │   └── projects/   # Project markdown files
 │   │   │   ├── data/           # CV data (bilingual)
 │   │   │   ├── layouts/        # Page layouts
